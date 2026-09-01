@@ -2,7 +2,7 @@
 set -eu
 paths=$(git diff --name-only @{upstream}...HEAD 2>/dev/null || git diff --cached --name-only)
 [ -z "$paths" ] && exit 0
-layers=$(pnpm --silent context:resolve -- $paths | sed -n 's/.*"layer": "\([^"]*\)".*/\1/p' | sort -u)
+layers=$(pnpm --silent context:resolve $paths | sed -n 's/.*"layer": "\([^"]*\)".*/\1/p' | sort -u)
 for layer in $layers; do
   tier=$(pnpm --silent tsx scripts/layer-context.ts field "$layer" gate_tier)
   [ "$tier" = "local-fast" ] && pnpm --silent tsx scripts/layer-context.ts run "$layer" test

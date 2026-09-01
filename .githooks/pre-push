@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-paths=$(git diff --name-only @{upstream}...HEAD 2>/dev/null || git diff --cached --name-only)
+paths=$(git diff --name-only --diff-filter=ACMR @{upstream}...HEAD 2>/dev/null || git diff --cached --name-only --diff-filter=ACMR)
 [ -z "$paths" ] && exit 0
 layers=$(pnpm --silent context:resolve $paths | sed -n 's/.*"layer": "\([^"]*\)".*/\1/p' | sort -u)
 for layer in $layers; do

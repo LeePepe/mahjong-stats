@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+paths=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$paths" ] || pnpm context:resolve $paths >/dev/null
+pnpm test

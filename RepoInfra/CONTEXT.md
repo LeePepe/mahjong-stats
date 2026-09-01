@@ -7,7 +7,7 @@ build: pnpm context:audit
 test: pnpm lint
 depends_on: []
 roles: [automation]
-owns: [recursive context resolver, local hooks, required CI policy]
+owns: [recursive context resolver, local hooks, required CI policy, GitHub Pages deployment]
 red_lines: [Hooks and CI resolve layers through the shared resolver only., Advisory jobs never satisfy a required check.]
 ---
 

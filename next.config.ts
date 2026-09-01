@@ -1,16 +1,11 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.GITHUB_ACTIONS === "true" ? "/mahjong-stats" : "";
 const nextConfig: NextConfig = {
-  async headers() {
-    return [{
-      source: "/:path*",
-      headers: [
-        { key: "Referrer-Policy", value: "no-referrer" },
-        { key: "X-Content-Type-Options", value: "nosniff" },
-        { key: "X-Frame-Options", value: "DENY" },
-      ],
-    }];
-  },
+  output: "export",
+  basePath,
+  assetPrefix: basePath,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   turbopack: {
     rules: {
       "*.css": {

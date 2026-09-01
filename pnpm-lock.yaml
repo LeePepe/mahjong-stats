@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@supabase/supabase-js':
-        specifier: ^2.112.4
-        version: 2.112.4
       next:
         specifier: 16.4.0-canary.6
         version: 16.4.0-canary.6(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -20,9 +17,6 @@ importers:
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
-      zod:
-        specifier: 4.5.0-canary.20260825T055534
-        version: 4.5.0-canary.20260825T055534
     devDependencies:
       '@tailwindcss/turbopack':
         specifier: ^4
@@ -739,38 +733,6 @@ packages:
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha1-p5tV26+GBIEvUtFAssmrQbwVC7g=, tarball: https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@standard-schema/spec/-/spec-1.1.0.tgz}
-
-  '@supabase/auth-js@2.112.4':
-    resolution: {integrity: sha1-Az5zn2tb6xrMA7ouoA+RoZ526CI=, tarball: https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/auth-js/-/auth-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-
-  '@supabase/functions-js@2.112.4':
-    resolution: {integrity: sha1-GRZvUVDloRFc9Wb1qSzlT7k2ie4=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/functions-js/-/functions-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-
-  '@supabase/phoenix@0.4.5':
-    resolution: {integrity: sha1-KPag3AIPU/FxiZucYCHuz+KhEtE=, tarball: https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/phoenix/-/phoenix-0.4.5.tgz}
-
-  '@supabase/postgrest-js@2.112.4':
-    resolution: {integrity: sha1-mivndJUHCUvfC35vVVIpMuF/uNE=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/postgrest-js/-/postgrest-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-
-  '@supabase/realtime-js@2.112.4':
-    resolution: {integrity: sha1-imy+58rQytn2K/wkoYENAge2t6M=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/realtime-js/-/realtime-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-
-  '@supabase/storage-js@2.112.4':
-    resolution: {integrity: sha1-uLZ3CLhWjKM6Nxy+mXroi3lUpiU=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/storage-js/-/storage-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-
-  '@supabase/supabase-js@2.112.4':
-    resolution: {integrity: sha1-qfmHzO1xt6TdpS03+RWjHG+iZck=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@supabase/supabase-js/-/supabase-js-2.112.4.tgz}
-    engines: {node: '>=22.0.0'}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0'
-    peerDependenciesMeta:
-      '@opentelemetry/api':
-        optional: true
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha1-GSh9DYbZYrERN2A5pQx5KQLJqGo=, tarball: https://ms-feed-2.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/@swc/helpers/-/helpers-0.5.23.tgz}
@@ -1665,10 +1627,6 @@ packages:
 
   html-escaper@2.0.2:
     resolution: {integrity: sha1-39YAJ9o2o238viNiYsAKWCJoFFM=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/html-escaper/-/html-escaper-2.0.2.tgz}
-
-  iceberg-js@0.8.1:
-    resolution: {integrity: sha1-R9iTRoKToBA4XhxwEj8p0PwdmRI=, tarball: https://ms-feed-17.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/iceberg-js/-/iceberg-js-0.8.1.tgz}
-    engines: {node: '>=20.0.0'}
 
   ignore@5.3.2:
     resolution: {integrity: sha1-PNQOcp82Q/2HywTlC/DrcivFlvU=, tarball: https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/ignore/-/ignore-5.3.2.tgz}
@@ -2634,9 +2592,6 @@ packages:
   zod@4.4.3:
     resolution: {integrity: sha1-toDxcohdGLvr8hqDTqJeVaG781Y=, tarball: https://ms-feed-2.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/zod/-/zod-4.4.3.tgz}
 
-  zod@4.5.0-canary.20260825T055534:
-    resolution: {integrity: sha1-n7s+nsRbikojFFfiueE5N/sEY80=, tarball: https://ms-feed-2.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/zod/-/zod-4.5.0-canary.20260825T055534.tgz}
-
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -3141,38 +3096,6 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@standard-schema/spec@1.1.0': {}
-
-  '@supabase/auth-js@2.112.4':
-    dependencies:
-      tslib: 2.8.1
-
-  '@supabase/functions-js@2.112.4':
-    dependencies:
-      tslib: 2.8.1
-
-  '@supabase/phoenix@0.4.5': {}
-
-  '@supabase/postgrest-js@2.112.4':
-    dependencies:
-      tslib: 2.8.1
-
-  '@supabase/realtime-js@2.112.4':
-    dependencies:
-      '@supabase/phoenix': 0.4.5
-      tslib: 2.8.1
-
-  '@supabase/storage-js@2.112.4':
-    dependencies:
-      iceberg-js: 0.8.1
-      tslib: 2.8.1
-
-  '@supabase/supabase-js@2.112.4':
-    dependencies:
-      '@supabase/auth-js': 2.112.4
-      '@supabase/functions-js': 2.112.4
-      '@supabase/postgrest-js': 2.112.4
-      '@supabase/realtime-js': 2.112.4
-      '@supabase/storage-js': 2.112.4
 
   '@swc/helpers@0.5.23':
     dependencies:
@@ -4243,8 +4166,6 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  iceberg-js@0.8.1: {}
-
   ignore@5.3.2: {}
 
   ignore@7.0.6: {}
@@ -5256,5 +5177,3 @@ snapshots:
       zod: 4.4.3
 
   zod@4.4.3: {}
-
-  zod@4.5.0-canary.20260825T055534: {}

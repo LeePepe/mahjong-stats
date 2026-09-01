@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { minimatch } from "minimatch";
 import { parse } from "yaml";
@@ -34,7 +34,7 @@ export function resolvePath(path: string, contextFile = "tech-context.md", seen:
 }
 
 function files() {
-  return execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
+  return execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], { encoding: "utf8" }).trim().split("\n").filter((path) => path && existsSync(resolve(root, path)));
 }
 
 function collectLeaves(contextFile = "tech-context.md", seen = new Set<string>(), output = new Map<string, string>()): Map<string, string> {
@@ -84,7 +84,7 @@ function run(layer: string, gate: "build" | "test") {
 
 function selftest() {
   const cases: [string, string, string][] = [
-    ["src/domain/ranking.ts", "domain", "H1/C1"], ["src/app/page.tsx", "web-ui", "H2"], ["supabase/seed.sql", "database", "C1"], ["scripts/layer-context.ts", "repo-infra", "R1"],
+    ["src/domain/ranking.ts", "domain", "H1/C1"], ["src/app/page.tsx", "web-ui", "H2"], ["src/data-access/github-store.ts", "data-access", "C1"], ["scripts/layer-context.ts", "repo-infra", "R1"],
   ];
   for (const [path, expected, label] of cases) { const actual = resolvePath(path).layer; if (actual !== expected) throw new Error(`${label}: ${path} resolved to ${actual}`); }
   try { resolvePath("src/unowned/file.ts"); throw new Error("F1: expected unmapped"); } catch (error) { if (!String(error).includes("unmapped")) throw error; }

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "麻将统计",
   description: "极三家月度战绩、天胡与牌局档案",
   robots: { index: false, follow: false },
+  referrer: "no-referrer",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

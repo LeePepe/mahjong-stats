@@ -9,15 +9,14 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "access:encrypt": "tsx scripts/encrypt-access.ts",
     "context:audit": "tsx scripts/layer-context.ts audit",
     "context:resolve": "tsx scripts/layer-context.ts resolve"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.112.4",
     "next": "16.4.0-canary.6",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "zod": "4.5.0-canary.20260825T055534"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

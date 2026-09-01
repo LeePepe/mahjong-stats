@@ -2,15 +2,16 @@
 
 ## Intent
 
-A phone-first group link shows monthly standings, single-game win/loss top three, tianhu counts and dates. Anyone holding the shared query link can add records. The source repository is public; data access is link-restricted.
+A phone-first group link shows monthly standings, single-game win/loss top three, tianhu counts and dates. Anyone holding the shared query link can add records without an account. The static site and dedicated data repository are public GitHub repositories.
 
 ## Acceptance
 
-- Missing or wrong `?key=` reveals no data.
+- Missing or wrong `?key=` renders no data in the site. Raw JSON remains public by explicit product choice.
 - Four unique players and numeric scores create one match.
 - Monthly totals and top-three values recompute from match results.
 - A named actor is recorded for every mutation.
 - Deleted matches disappear from rankings and can be restored from history.
+- Every accepted edit updates the JSON file in a Git commit.
 - Player names from the supplied announcement are available after seeding.
 - The primary workflow is comfortable at 390 CSS pixels wide.
 

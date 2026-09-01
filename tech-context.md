@@ -5,9 +5,6 @@ routes:
   - paths: [src/**, tests/**, public/**, package.json, pnpm-lock.yaml, pnpm-workspace.yaml, next.config.ts, tsconfig.json, eslint.config.mjs, vitest.config.ts]
     context: Product/CONTEXT.md
     kind: index
-  - paths: [supabase/**]
-    context: Database/CONTEXT.md
-    kind: layer
   - paths: [.github/**, .githooks/**, scripts/**]
     context: RepoInfra/CONTEXT.md
     kind: layer
@@ -19,4 +16,4 @@ support_exclusions:
 
 # Repository technical context
 
-Next.js serves the mobile web UI and server-only JSON endpoints. Supabase stores normalized match data and the append-only audit trail. Paths descend through the routes above; child facts are not duplicated here.
+Next.js exports a static GitHub Pages site. A public, dedicated data repository stores JSON state; the browser uses a query-key-encrypted, repository-scoped token to commit edits through the GitHub Contents API. Paths descend through the routes above; child facts are not duplicated here.

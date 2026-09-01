@@ -16,7 +16,6 @@ Feature changes also read the matching document under `docs/specs/`.
 | Change scope | Read first |
 |---|---|
 | Product source, tests, assets, or build config | `Product/CONTEXT.md` |
-| `supabase/**` | `Database/CONTEXT.md` |
 | `.github/**`, `.githooks/**`, `scripts/**` | `RepoInfra/CONTEXT.md` |
 
 Follow index contexts recursively until one leaf layer owns the changed path.

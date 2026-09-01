@@ -1,16 +1,16 @@
 ---
 layer: data-access
-paths: [src/server/**]
-test_paths: [tests/server/**]
+paths: [src/data-access/**]
+test_paths: [tests/data-access/**]
 gate_tier: local-fast
 build: pnpm typecheck
 test: pnpm test -- tests/server
 depends_on: [domain]
 roles: [adapter]
-owns: [query-key verification, Supabase mapping, audited mutations]
-red_lines: [The access key and service-role key never enter browser code or logs., Mutations must append audit history and deletes remain recoverable.]
+owns: [query-key verification, encrypted token handling, GitHub Contents API mapping]
+red_lines: [The plaintext token is never committed or logged., The token may only grant contents access to the dedicated data repository.]
 ---
 
 # Data-access layer
 
-Server-only boundary for access control, persistence mapping, and audit writes.
+Browser adapter for capability-link access, token decryption, public JSON reads, and committed GitHub writes.

@@ -7,10 +7,10 @@ build: pnpm build
 test: pnpm lint
 depends_on: [domain, data-access]
 roles: [api, view]
-owns: [mobile web experience, query-gated routes, mutation validation, product build configuration]
-red_lines: [A request without the correct query key reveals no mahjong data., Editing remains usable on a narrow mobile viewport.]
+owns: [mobile web experience, client-side query gate, static export, product build configuration]
+red_lines: [A page without the correct query key renders no mahjong data., Editing remains usable on a narrow mobile viewport.]
 ---
 
 # Web UI layer
 
-Next.js App Router pages, route handlers, styling, metadata, and product-level build inputs.
+Next.js App Router pages, styling, metadata, GitHub Pages export, and product-level build inputs.

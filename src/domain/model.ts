@@ -7,7 +7,7 @@ export type MonthlyStanding = {
   month: string;
   source: string;
   incomplete: boolean;
-  entries: { rank: number; name: string; score: number; tier: "A" | "B" | "C" | "D" }[];
+  entries: { rank: number; name: string; score: number; tier: "S" | "A" | "B" | "C" | "D" | "F" }[];
 };
 export type TianhuBaseline = { playerId: string; reportedCount: number; knownDates: string[]; asOf: string; source: string };
 export type MonthlyScore = { id: string; month: string; name: string; score: number; updatedAt: string; updatedBy: string };
@@ -22,5 +22,5 @@ export type AuditEntry = {
   createdAt: string;
 };
 export type MahjongState = { players: Player[]; matches: Match[]; specialEvents: SpecialEvent[]; snapshots: Snapshot[]; audit: AuditEntry[]; monthlyStandings?: MonthlyStanding[]; tianhuBaselines?: TianhuBaseline[]; monthlyScores?: MonthlyScore[]; demo: boolean };
-export type RankingRow = { playerId: string; name: string; score: number; games: number; tier: "A" | "B" | "C" | "D"; publishedRank?: number; historical?: boolean };
+export type RankingRow = { playerId: string; name: string; score: number; games: number; tier: "S" | "A" | "B" | "C" | "D" | "F"; publishedRank?: number; historical?: boolean };
 export type TianhuRow = { playerId: string; name: string; count: number; dates: string[] };

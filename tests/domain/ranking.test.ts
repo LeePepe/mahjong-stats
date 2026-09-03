@@ -29,6 +29,6 @@ describe("rankings", () => {
   });
   it("sorts directly synced monthly scores", () => {
     const state = { ...demoState, matches: [], monthlyScores: [{ id: "a", month: "2026-09", name: "甲", score: -2, updatedAt: "", updatedBy: "" }, { id: "b", month: "2026-09", name: "乙", score: 9, updatedAt: "", updatedBy: "" }] };
-    expect(monthlyRanking(state, "2026-09").map((row) => row.name)).toEqual(["乙", "甲"]);
+    expect(monthlyRanking(state, "2026-09").map((row) => [row.name, row.tier])).toEqual([["乙", "S"], ["甲", "F"]]);
   });
 });

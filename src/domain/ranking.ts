@@ -2,18 +2,20 @@ import type { MahjongState, RankingRow, TianhuRow } from "./model";
 
 export const monthOf = (value: string) => value.slice(0, 7);
 
-function tierFor(score: number): RankingRow["tier"] {
-  if (score >= 50) return "A";
-  if (score >= 0) return "B";
-  if (score >= -50) return "C";
-  return "D";
+function tierForRank(rank: number, total: number): RankingRow["tier"] {
+  if (rank === 1) return "S";
+  const groupSize = Math.max(1, Math.ceil((total - 1) / 4));
+  if (rank > total - groupSize) return "F";
+  if (rank > total - groupSize * 2) return "C";
+  if (rank > total - groupSize * 3) return "B";
+  return "A";
 }
 
 export function monthlyRanking(state: MahjongState, month: string): RankingRow[] {
   const published = state.monthlyStandings?.find((standing) => standing.month === month);
   if (published) return published.entries.map((entry) => ({ playerId: `historical-${month}-${entry.rank}`, name: entry.name, score: entry.score, games: 0, tier: entry.tier, publishedRank: entry.rank, historical: true }));
   const synced = (state.monthlyScores ?? []).filter((entry) => entry.month === month).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "zh-CN"));
-  if (synced.length) return synced.map((entry) => ({ playerId: entry.id, name: entry.name, score: entry.score, games: 0, tier: tierFor(entry.score), historical: false }));
+  if (synced.length) return synced.map((entry, index) => ({ playerId: entry.id, name: entry.name, score: entry.score, games: 0, tier: tierForRank(index + 1, synced.length), historical: false }));
   const totals = new Map<string, { score: number; games: number }>();
   state.matches.filter((match) => !match.deletedAt && monthOf(match.playedOn) === month).forEach((match) => {
     match.results.forEach((result) => {
@@ -21,12 +23,12 @@ export function monthlyRanking(state: MahjongState, month: string): RankingRow[]
       totals.set(result.playerId, { score: current.score + result.score, games: current.games + 1 });
     });
   });
-  return [...totals.entries()].map(([playerId, total]) => ({
+  const rows = [...totals.entries()].map(([playerId, total]) => ({
     playerId,
     name: state.players.find((player) => player.id === playerId)?.name ?? "未知玩家",
     ...total,
-    tier: tierFor(total.score),
   })).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "zh-CN"));
+  return rows.map((row, index) => ({ ...row, tier: tierForRank(index + 1, rows.length) }));
 }
 
 export function singleGameTop(state: MahjongState, month: string, direction: "win" | "loss") {

@@ -15,4 +15,11 @@ describe("mutations", () => {
     const restored = applyMutation(removed, { type: "restoreMatch", actor: "测试", id: "m1" }, clock);
     expect(restored.matches.find((match) => match.id === "m1")?.deletedAt).toBeNull();
   });
+  it("creates and freely renames a synced monthly score", () => {
+    const created = applyMutation(demoState, { type: "upsertMonthlyScore", actor: "本人", month: "2026-09", name: "旧昵称", score: 12 }, clock);
+    const entry = created.monthlyScores![0];
+    const renamed = applyMutation(created, { type: "upsertMonthlyScore", actor: "本人", id: entry.id, month: "2026-09", name: "新昵称", score: 18.5 }, clock);
+    expect(renamed.monthlyScores![0]).toMatchObject({ name: "新昵称", score: 18.5 });
+    expect(renamed.audit[0]).toMatchObject({ entityType: "monthly_score", action: "update" });
+  });
 });

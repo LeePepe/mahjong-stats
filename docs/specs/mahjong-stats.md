@@ -8,7 +8,9 @@ A phone-first group link shows monthly standings, single-game win/loss top three
 
 - Missing or wrong `?key=` renders no data in the site. Raw JSON remains public by explicit product choice.
 - Four unique players and numeric scores create one match.
+- Anyone with the link can add or freely rename a current-month leaderboard entry and update its score.
 - Monthly totals and top-three values recompute from match results.
+- A directly synced monthly leaderboard is authoritative when present; closed historical screenshots remain separate published standings.
 - A named actor is recorded for every mutation.
 - Deleted matches disappear from rankings and can be restored from history.
 - Every accepted edit updates the JSON file in a Git commit.

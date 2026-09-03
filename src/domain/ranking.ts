@@ -10,6 +10,10 @@ function tierFor(score: number): RankingRow["tier"] {
 }
 
 export function monthlyRanking(state: MahjongState, month: string): RankingRow[] {
+  const published = state.monthlyStandings?.find((standing) => standing.month === month);
+  if (published) return published.entries.map((entry) => ({ playerId: `historical-${month}-${entry.rank}`, name: entry.name, score: entry.score, games: 0, tier: entry.tier, publishedRank: entry.rank, historical: true }));
+  const synced = (state.monthlyScores ?? []).filter((entry) => entry.month === month).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "zh-CN"));
+  if (synced.length) return synced.map((entry) => ({ playerId: entry.id, name: entry.name, score: entry.score, games: 0, tier: tierFor(entry.score), historical: false }));
   const totals = new Map<string, { score: number; games: number }>();
   state.matches.filter((match) => !match.deletedAt && monthOf(match.playedOn) === month).forEach((match) => {
     match.results.forEach((result) => {
@@ -39,15 +43,19 @@ export function singleGameTop(state: MahjongState, month: string, direction: "wi
 }
 
 export function tianhuRanking(state: MahjongState): TianhuRow[] {
-  const grouped = new Map<string, string[]>();
+  const grouped = new Map<string, { count: number; dates: string[]; asOf?: string }>();
+  for (const baseline of state.tianhuBaselines ?? []) grouped.set(baseline.playerId, { count: baseline.reportedCount, dates: [...baseline.knownDates], asOf: baseline.asOf });
   state.specialEvents.filter((event) => !event.deletedAt && event.type === "tianhu").forEach((event) => {
-    grouped.set(event.playerId, [...(grouped.get(event.playerId) ?? []), event.occurredOn]);
+    const current = grouped.get(event.playerId) ?? { count: 0, dates: [] };
+    if (!current.dates.includes(event.occurredOn)) current.dates.unshift(event.occurredOn);
+    if (!current.asOf || event.occurredOn > current.asOf) current.count += 1;
+    grouped.set(event.playerId, current);
   });
-  return [...grouped.entries()].map(([playerId, dates]) => ({
+  return [...grouped.entries()].map(([playerId, value]) => ({
     playerId,
     name: state.players.find((player) => player.id === playerId)?.name ?? "未知玩家",
-    count: dates.length,
-    dates: dates.sort().reverse(),
+    count: value.count,
+    dates: value.dates,
   })).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "zh-CN"));
 }
 
@@ -55,5 +63,7 @@ export function availableMonths(state: MahjongState) {
   return [...new Set([
     ...state.matches.filter((match) => !match.deletedAt).map((match) => monthOf(match.playedOn)),
     ...state.snapshots.map((snapshot) => snapshot.month),
+    ...(state.monthlyStandings ?? []).map((standing) => standing.month),
+    ...(state.monthlyScores ?? []).map((entry) => entry.month),
   ])].sort().reverse();
 }

@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "access:encrypt": "tsx scripts/encrypt-access.ts",
+    "access:verify": "tsx scripts/verify-github-token.ts",
     "context:audit": "tsx scripts/layer-context.ts audit",
     "context:resolve": "tsx scripts/layer-context.ts resolve"
   },

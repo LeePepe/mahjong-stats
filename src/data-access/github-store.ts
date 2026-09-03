@@ -50,6 +50,6 @@ export async function commitMutation(session: GithubSession, mutation: Mutation)
   const content = bytesToBase64(new TextEncoder().encode(`${JSON.stringify(next, null, 2)}\n`));
   const { owner, repo, branch, path } = session.config;
   const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, { method: "PUT", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${session.token}`, "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28" }, body: JSON.stringify({ message: `data: ${mutation.actor} ${mutation.type}`, content, sha: latest.sha, branch }) });
-  if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(response.status === 409 ? "刚刚有人同时编辑，请重试" : (body.message ?? "写入 GitHub 失败")); }
+  if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(response.status === 409 ? "刚刚有人同时编辑，请重试" : response.status === 403 ? "写入 Token 没有 Contents 权限，请联系链接维护者" : (body.message ?? "写入 GitHub 失败")); }
   return next;
 }

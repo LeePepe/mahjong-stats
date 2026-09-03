@@ -4,7 +4,7 @@ paths: [src/data-access/**]
 test_paths: [tests/data-access/**]
 gate_tier: local-fast
 build: pnpm typecheck
-test: pnpm test -- tests/server
+test: pnpm test -- tests/data-access
 depends_on: [domain]
 roles: [adapter]
 owns: [query-key verification, encrypted token handling, GitHub Contents API mapping]
